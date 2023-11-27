@@ -7,59 +7,62 @@ use Illuminate\Http\Request;
 
 class SongsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    
+    public function getDanhSach()
     {
-        //
+        $songs = Songs::all();
+        return view('songs.danhsach', compact('songs'));
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    
+    public function getThem()
     {
-        //
+        $typebeat = TypeBeat::all();
+        $musician = Musician::all();
+        return view('songs.them', compact('typebeat', 'musician'));
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+   
+    public function postThem(Request $request)
     {
-        //
+        $request->validate([
+            'typebeat_id' => ['required'],
+            'musician_id' => ['required'],
+            'tennhac' => ['required', 'string', 'max:191', 'unique:typebeat'],
+
+
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Songs $songs)
+   
+    public function getSua($id)
     {
-        //
+        $typebeat = TypeBeat::find($id);
+        $typebeat = TypeBeat::all();
+        $musician = Musician::all();
+        return view('songs.sua', compact('songs','typebeat', 'musician'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Songs $songs)
+  
+    public function postSua(Request $request, $id)
     {
-        //
+        $request->validate([
+            'typebeat_id' => ['required'],
+            'musician_id' => ['required'],
+            'tennhac' => ['required', 'string', 'max:191', 'unique:typebeat'],
+
+
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Songs $songs)
+    
+    public function getXoa($id)
     {
-        //
-    }
+        $orm = Songs::find($id);
+		$orm->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Songs $songs)
-    {
-        //
+		return redirect()->route('songs');
     }
 }

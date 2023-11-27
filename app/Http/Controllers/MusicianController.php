@@ -4,62 +4,59 @@ namespace App\Http\Controllers;
 
 use App\Models\Musician;
 use Illuminate\Http\Request;
-
+use App\Models\Status;
+use Illuminate\Support\Str;
 class MusicianController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+  
+    public function getDanhSach()
     {
-        //
+        $musician = Musician::all();
+		return view('musician.danhsach', compact('musician'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+   
+    public function getThem()
     {
-        //
+        return view('musician.them');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    
+    public function postThem(Request $request)
     {
-        //
+        $orm = new Musician();
+		$orm->tennhacsi = $request->tennhacsi;
+		$orm->tennhacsi_slug = Str::slug($request->tennhacsi, '-');
+		$orm->save();
+		
+
+		return redirect()->route('musician');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Musician $musician)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Musician $musician)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Musician $musician)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Musician $musician)
-    {
-        //
-    }
+    public function getSua($id)
+	{
+		$musician = Musician::find($id);
+		return view('musician.sua', compact('musician'));
+	}
+	
+	public function postSua(Request $request, $id)
+	{
+	
+		$orm = Musician::find($id);
+		$orm->tennhacsi = $request->tennhacsi;
+		$orm->tennhacsi_slug = Str::slug($request->tennhacsi, '-');
+		$orm->save();
+		
+	
+		return redirect()->route('musician');
+	}
+	
+	public function getXoa($id)
+	{
+		$orm = Musician::find($id);
+		$orm->delete();
+		
+		
+		return redirect()->route('musician');
+	}
 }

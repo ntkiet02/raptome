@@ -4,62 +4,61 @@ namespace App\Http\Controllers;
 
 use App\Models\TypeBeat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
+//use function PHPSTORM_META\type;
 
 class TypeBeatController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+   
+    public function getDanhSach()
     {
-        //
+        $typebeat = TypeBeat::all();
+        return view('typebeat.danhsach', compact('typebeat'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    
+    public function getThem()
     {
-        //
+        return view('typebeat.them');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    
+    public function postThem(Request $request)
     {
-        //
+        $orm = new TypeBeat();
+        $orm->tennhac = $request->tennhac;
+        $orm->tennhac_slug = Str::slug($request->tennhac, '-');
+        $orm->save();
+
+        return redirect()->route('typebeat');
+
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(TypeBeat $typeBeat)
+    
+    public function getSua($id)
     {
-        //
+        $typebeat = TypeBeat::find($id);
+        return view('typebeat.sua', compact('typebeat'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(TypeBeat $typeBeat)
+ 
+    public function postSua(Request $request, $id)
     {
-        //
+        $orm = TypeBeat::find($id);
+        $orm->tennhac = $request->tennhac;
+        $orm->tennhac_slug = Str::slug($request->tennhac, '-');
+        $orm->save();
+        
+        return redirect()->route('typebeat');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, TypeBeat $typeBeat)
+   
+    public function getXoa($id)
     {
-        //
-    }
+        $orm = TypeBeat::find($id);
+        $orm->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(TypeBeat $typeBeat)
-    {
-        //
+        return redirect()->route('typebeat');
     }
 }

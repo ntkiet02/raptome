@@ -7,59 +7,58 @@ use Illuminate\Http\Request;
 
 class StatusController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    
+    public function getDanhSach()
     {
-        //
+        $status = Status::all();
+		return view('status.danhsach', compact('status'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+
+    public function getThem()
     {
-        //
+        return view('status.them');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+  
+    public function postThem(Request $request)
     {
-        //
+        
+		$request->validate([
+			'status' => ['required', 'string', 'max:191', 'unique:status'],
+		]);
+		
+		$orm = new Status();
+		$orm->status = $request->status;
+		$orm->save();
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Status $status)
+   
+    public function getSua($id)
     {
-        //
+        $status = Status::find($id);
+		return view('status.sua', compact('status'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Status $status)
+    
+    public function postSua(Request $request, $id)
     {
-        //
+        
+		$request->validate([
+			'status' => ['required', 'string', 'max:191', 'unique:status'],
+		]);
+		
+		$orm = new Status();
+		$orm->status = $request->status;
+		$orm->save();
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Status $status)
+    
+    public function getXoa($id)
     {
-        //
-    }
+        $orm = Status::find($id);
+		$orm->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Status $status)
-    {
-        //
+		return redirect()->route('status');
     }
 }
