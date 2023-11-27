@@ -116,7 +116,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="footer__option__item">
                             <h5>About us</h5>
-                            <p>&copy; 2023 by Nguyễn Trí Kiệt and Bùi Thị Ngọc Hân. Raptome là trang web siu cấp vip pro không được bất kỳ giải thưởng hay người dùng cũng như feedback nào. Huhu</p>
+                            <p>&copy; 2024 by Nguyễn Trí Kiệt and Bùi Thị Ngọc Hân. Raptome là trang web siu cấp vip pro không được bất kỳ giải thưởng hay người dùng cũng như feedback nào. Huhu</p>
                             <a href="#" class="read__more">Read more <span class="arrow_right"></span></a>
                         </div>
                     </div>
