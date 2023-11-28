@@ -8,28 +8,22 @@ use Illuminate\Support\Str;
 
 class StatusController extends Controller
 {
-  public function getList()
+      public function getList()
   {
       $status = Status::all();
       return view('status.list', compact('status'));
   }
-
-  
   public function getAdd()
   {
       return view('status.add');
   }
-
-  
   public function postAdd(Request $request)
   {
       $orm = new Status();
       $orm->statusname = $request->statusname;
       $orm->statusname_slug = Str::slug($request->statusname, '-');
       $orm->save();
-
       return redirect()->route('status');
-
   }
   public function getUpdate($id)
   {
