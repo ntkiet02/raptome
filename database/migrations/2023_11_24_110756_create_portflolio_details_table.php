@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('portflolio_details', function (Blueprint $table) {
+        Schema::create('portflolio_detail', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('protflolios_id')->constrained('protflolios');
-            $table->foreignId('users_id')->constrained('users');
-            $table->foreignId('songs_id')->constrained('songs');
+            $table->foreignId('protflolio_id')->constrained('protflolio');
+            $table->foreignId('user_id')->constrained('user');
+            $table->foreignId('songs_id')->constrained('song');
             $table->string('image')->nullable();
             $table->timestamps();
             $table-> engine='InnoDB';

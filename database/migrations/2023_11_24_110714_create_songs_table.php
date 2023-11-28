@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('songs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('typebeats_id')->constrained('type_beats');
-            $table->foreignId('musicians_id')->constrained('musicians');
+            $table->foreignId('typebeat_id')->constrained('typebeat');
+            $table->foreignId('musician_id')->constrained('musician');
             $table->string('songname');
             $table->string('songname_slug');
             $table->integer('time');
-            $table->string('recording')->nullable();
-            $table->text('lyric')->nullable();;
+            $table->string('recording');
+            $table->text('lyric');
             $table->timestamps();
             $table->engine='InnoDB';
         });

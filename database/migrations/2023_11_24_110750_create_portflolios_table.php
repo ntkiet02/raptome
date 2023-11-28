@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('portflolios', function (Blueprint $table) {
+        Schema::create('portflolio', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('users_id')->constrained('users');
-            $table->foreignId('statuses')->constrained('statuses');
+            $table->foreignId('user_id')->constrained('user');
+            $table->foreignId('status_id')->constrained('status');
             $table->string('facebooklink');
             $table->timestamps();
             $table->engine='InnoDB';

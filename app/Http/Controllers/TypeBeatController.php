@@ -11,24 +11,24 @@ use Illuminate\Support\Str;
 class TypeBeatController extends Controller
 {
    
-    public function getDanhSach()
+    public function getList()
     {
         $typebeat = TypeBeat::all();
-        return view('typebeat.danhsach', compact('typebeat'));
+        return view('typebeat.list', compact('typebeat'));
     }
 
     
-    public function getThem()
+    public function getAdd()
     {
-        return view('typebeat.them');
+        return view('typebeat.add');
     }
 
     
-    public function postThem(Request $request)
+    public function postAdd(Request $request)
     {
         $orm = new TypeBeat();
-        $orm->tennhac = $request->tennhac;
-        $orm->tennhac_slug = Str::slug($request->tennhac, '-');
+        $orm->typename = $request->typename;
+        $orm->typename_slug = Str::slug($request->typebeat, '-');
         $orm->save();
 
         return redirect()->route('typebeat');
@@ -36,25 +36,25 @@ class TypeBeatController extends Controller
     }
 
     
-    public function getSua($id)
+    public function getUpdate($id)
     {
         $typebeat = TypeBeat::find($id);
-        return view('typebeat.sua', compact('typebeat'));
+        return view('typebeat.update', compact('typebeat'));
     }
 
  
-    public function postSua(Request $request, $id)
+    public function postUpdate(Request $request, $id)
     {
         $orm = TypeBeat::find($id);
-        $orm->tennhac = $request->tennhac;
-        $orm->tennhac_slug = Str::slug($request->tennhac, '-');
+        $orm->typebeat = $request->typebeat;
+        $orm->typebeat_slug = Str::slug($request->typebeat, '-');
         $orm->save();
         
         return redirect()->route('typebeat');
     }
 
    
-    public function getXoa($id)
+    public function getDelete($id)
     {
         $orm = TypeBeat::find($id);
         $orm->delete();

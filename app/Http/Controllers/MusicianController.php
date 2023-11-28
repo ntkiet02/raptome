@@ -8,55 +8,57 @@ use App\Models\Status;
 use Illuminate\Support\Str;
 class MusicianController extends Controller
 {
-  
-    public function getDanhSach()
-    {
-        $musician = Musician::all();
-		return view('musician.danhsach', compact('musician'));
-    }
-
    
-    public function getThem()
+    public function getList()
     {
-        return view('musician.them');
+        $stagename = Musician::all();
+        return view('stagename.list', compact('stagename'));
     }
 
     
-    public function postThem(Request $request)
+    public function getAdd()
     {
-        $orm = new Musician();
-		$orm->tennhacsi = $request->tennhacsi;
-		$orm->tennhacsi_slug = Str::slug($request->tennhacsi, '-');
-		$orm->save();
-		
-
-		return redirect()->route('musician');
+        return view('stagename.add');
     }
 
-    public function getSua($id)
-	{
-		$musician = Musician::find($id);
-		return view('musician.sua', compact('musician'));
-	}
-	
-	public function postSua(Request $request, $id)
-	{
-	
-		$orm = Musician::find($id);
-		$orm->tennhacsi = $request->tennhacsi;
-		$orm->tennhacsi_slug = Str::slug($request->tennhacsi, '-');
-		$orm->save();
-		
-	
-		return redirect()->route('musician');
-	}
-	
-	public function getXoa($id)
-	{
-		$orm = Musician::find($id);
-		$orm->delete();
-		
-		
-		return redirect()->route('musician');
-	}
+    
+    public function postAdd(Request $request)
+    {
+        $orm = new Musician();
+        $orm->typename = $request->typename;
+        $orm->typename_slug = Str::slug($request->stagename, '-');
+        $orm->save();
+
+        return redirect()->route('stagename');
+
+    }
+
+    
+    public function getUpdate($id)
+    {
+        $stagename = Musician::find($id);
+        return view('stagename.update', compact('stagename'));
+    }
+
+ 
+    public function postUpdate(Request $request, $id)
+    {
+        $orm = Musician::find($id);
+        $orm->stagename = $request->stagename;
+        $orm->typebeat_slug = Str::slug($request->stagename, '-');
+        $orm->save();
+        
+        return redirect()->route('stagename');
+    }
+
+   
+    public function getDelete($id)
+    {
+        $orm = Musician::find($id);
+        $orm->delete();
+
+        return redirect()->route('stagename');
+    }
+
+   
 }

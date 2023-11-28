@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Status extends Model
 {
     use HasFactory;
+    protected $table ='status';
     public function Portflolio_detail(): HasMany
     {
         return $this->hasMany(Portflolio::class,'status_id', 'id');

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('type_beats', function (Blueprint $table) {
+        Schema::create('typebeat', function (Blueprint $table) {
             $table->id();
             $table->string('typename');
             $table->string('typename_slug');
