@@ -4,61 +4,55 @@ namespace App\Http\Controllers;
 
 use App\Models\Status;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class StatusController extends Controller
 {
-    
-    public function getDanhSach()
-    {
-        $status = Status::all();
-		return view('status.danhsach', compact('status'));
-    }
-
-
-    public function getThem()
-    {
-        return view('status.them');
-    }
+  public function getList()
+  {
+      $status = Status::all();
+      return view('status.list', compact('status'));
+  }
 
   
-    public function postThem(Request $request)
-    {
-        
-		$request->validate([
-			'status' => ['required', 'string', 'max:191', 'unique:status'],
-		]);
-		
-		$orm = new Status();
-		$orm->status = $request->status;
-		$orm->save();
-    }
+  public function getAdd()
+  {
+      return view('status.add');
+  }
 
-   
-    public function getSua($id)
-    {
-        $status = Status::find($id);
-		return view('status.sua', compact('status'));
-    }
+  
+  public function postAdd(Request $request)
+  {
+      $orm = new Status();
+      $orm->statusname = $request->statusname;
+      $orm->statusname_slug = Str::slug($request->statusname, '-');
+      $orm->save();
 
-    
-    public function postSua(Request $request, $id)
-    {
-        
-		$request->validate([
-			'status' => ['required', 'string', 'max:191', 'unique:status'],
-		]);
-		
-		$orm = new Status();
-		$orm->status = $request->status;
-		$orm->save();
-    }
+      return redirect()->route('status');
 
-    
-    public function getXoa($id)
-    {
-        $orm = Status::find($id);
-		$orm->delete();
+  }
+  public function getUpdate($id)
+  {
+      $status = Status::find($id);
+      return view('status.update', compact('status'));
+  }
+  public function postUpdate(Request $request, $id)
+  {
+      $orm = Status::find($id);
+      $orm->statusname = $request->statusname;
+      $orm->statusname_slug = Str::slug($request->statusname, '-');
+      $orm->save();
+      
+      return redirect()->route('status');
+  }
 
-		return redirect()->route('status');
-    }
+ 
+  public function getDelete($id)
+  {
+      $orm = Status::find($id);
+      $orm->delete();
+
+      return redirect()->route('status');
+  }
+
 }

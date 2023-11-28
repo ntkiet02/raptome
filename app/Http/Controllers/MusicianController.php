@@ -11,33 +11,33 @@ class MusicianController extends Controller
    
     public function getList()
     {
-        $stagename = Musician::all();
-        return view('stagename.list', compact('stagename'));
+        $musican = Musician::all();
+        return view('musician.list', compact('musician'));
     }
 
     
     public function getAdd()
     {
-        return view('stagename.add');
+        return view('musician.add');
     }
 
     
     public function postAdd(Request $request)
     {
         $orm = new Musician();
-        $orm->typename = $request->typename;
-        $orm->typename_slug = Str::slug($request->stagename, '-');
+        $orm->stagename = $request->stagename;
+        $orm->stagename_slug = Str::slug($request->stagename, '-');
         $orm->save();
 
-        return redirect()->route('stagename');
+        return redirect()->route('musician');
 
     }
 
     
     public function getUpdate($id)
     {
-        $stagename = Musician::find($id);
-        return view('stagename.update', compact('stagename'));
+        $musician = Musician::find($id);
+        return view('musician.update', compact('musician'));
     }
 
  
@@ -45,10 +45,10 @@ class MusicianController extends Controller
     {
         $orm = Musician::find($id);
         $orm->stagename = $request->stagename;
-        $orm->typebeat_slug = Str::slug($request->stagename, '-');
+        $orm->stagebeat_slug = Str::slug($request->stagename, '-');
         $orm->save();
         
-        return redirect()->route('stagename');
+        return redirect()->route('musician');
     }
 
    
@@ -57,8 +57,6 @@ class MusicianController extends Controller
         $orm = Musician::find($id);
         $orm->delete();
 
-        return redirect()->route('stagename');
-    }
-
-   
+        return redirect()->route('musician');
+    }  
 }

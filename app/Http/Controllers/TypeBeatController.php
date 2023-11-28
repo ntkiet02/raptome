@@ -28,7 +28,7 @@ class TypeBeatController extends Controller
     {
         $orm = new TypeBeat();
         $orm->typename = $request->typename;
-        $orm->typename_slug = Str::slug($request->typebeat, '-');
+        $orm->typename_slug = Str::slug($request->typename, '-');
         $orm->save();
 
         return redirect()->route('typebeat');
@@ -46,8 +46,8 @@ class TypeBeatController extends Controller
     public function postUpdate(Request $request, $id)
     {
         $orm = TypeBeat::find($id);
-        $orm->typebeat = $request->typebeat;
-        $orm->typebeat_slug = Str::slug($request->typebeat, '-');
+        $orm->typename = $request->typename;
+        $orm->typename_slug = Str::slug($request->typename, '-');
         $orm->save();
         
         return redirect()->route('typebeat');
