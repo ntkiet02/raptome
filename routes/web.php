@@ -6,7 +6,9 @@ use App\Http\Controllers\TypeBeatController;
 use App\Http\Controllers\MusicianController;
 use App\Http\Controllers\SongsController;
 use App\Http\Controllers\StatusController;
-use App\Http\Controllers\PortflolioControllerController;
+use App\Http\Controllers\PortflolioController;
+use App\Http\Controllers\UserController;
+
 //use App\Http\Controllers\Portflolio_detailController;
 //use App\Models\TypeBeat;
 
@@ -16,7 +18,7 @@ use App\Http\Controllers\PortflolioControllerController;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
+| routes are loaded by the RouteServiceProvider and all of add will
 | be assigned to the "web" middleware group. Make something great!
 |
 */
@@ -34,49 +36,49 @@ Route::get('/', [HomeController::class, 'getHome'])->name('frontend');
 Route::get('/home', [HomeController::class, 'getHome'])->name('frontend');
 
 // Quản lý TypeBeat
-Route::get('/typebeat', [TypeBeatController::class, 'getDanhSach'])->name('typebeat');
-Route::get('/typebeat/them', [TypeBeatController::class, 'getThem'])->name('typebeat.them');
-Route::post('/typebeat/them', [TypeBeatController::class, 'postThem'])->name('typebeat.them');
-Route::get('/typebeat/sua/{id}', [TypeBeatController::class, 'getSua'])->name('typebeat.sua');
-Route::post('/typebeat/sua/{id}', [TypeBeatController::class, 'postSua'])->name('typebeat.sua');
-Route::get('/typebeat/xoa/{id}', [TypeBeatController::class, 'getXoa'])->name('typebeat.xoa');
+Route::get('/typebeat', [TypeBeatController::class, 'getList'])->name('typebeat');
+Route::get('/typebeat/add', [TypeBeatController::class, 'getAdd'])->name('typebeat.add');
+Route::post('/typebeat/add', [TypeBeatController::class, 'postAdd'])->name('typebeat.add');
+Route::get('/typebeat/update/{id}', [TypeBeatController::class, 'getUpdate'])->name('typebeat.update');
+Route::post('/typebeat/update/{id}', [TypeBeatController::class, 'postUpdate'])->name('typebeat.update');
+Route::get('/typebeat/delete/{id}', [TypeBeatController::class, 'getDelete'])->name('typebeat.delete');
 
 // Quản lý Musician
-Route::get('/musician', [MusicianController::class, 'getDanhSach'])->name('musician');
-Route::get('/musician/them', [MusicianController::class, 'getThem'])->name('musician.them');
-Route::post('/musician/them', [MusicianController::class, 'postThem'])->name('musician.them');
-Route::get('/musician/sua/{id}', [MusicianController::class, 'getSua'])->name('musician.sua');
-Route::post('/musician/sua/{id}', [MusicianController::class, 'postSua'])->name('musician.sua');
-Route::get('/musician/xoa/{id}', [MusicianController::class, 'getXoa'])->name('musician.xoa');
+Route::get('/musician', [MusicianController::class, 'getList'])->name('musician');
+Route::get('/musician/add', [MusicianController::class, 'getAdd'])->name('musician.add');
+Route::post('/musician/add', [MusicianController::class, 'postAdd'])->name('musician.add');
+Route::get('/musician/update/{id}', [MusicianController::class, 'getUpdate'])->name('musician.update');
+Route::post('/musician/update/{id}', [MusicianController::class, 'postUpdate'])->name('musician.update');
+Route::get('/musician/delete/{id}', [MusicianController::class, 'getDelete'])->name('musician.delete');
 
 // Quản lý Songs
-Route::get('/songs', [SongsController::class, 'getDanhSach'])->name('songs');
-Route::get('/songs/them', [SongsController::class, 'getThem'])->name('songs.them');
-Route::post('/songs/them', [SongsController::class, 'postThem'])->name('songs.them');
-Route::get('/songs/sua/{id}', [SongsController::class, 'getSua'])->name('songs.sua');
-Route::post('/songs/sua/{id}', [SongsController::class, 'postSua'])->name('songs.sua');
-Route::get('/songs/xoa/{id}', [SongsController::class, 'getXoa'])->name('songs.xoa');
+Route::get('/songs', [SongsController::class, 'getList'])->name('songs');
+Route::get('/songs/add', [SongsController::class, 'getAdd'])->name('songs.add');
+Route::post('/songs/add', [SongsController::class, 'postAdd'])->name('songs.add');
+Route::get('/songs/update/{id}', [SongsController::class, 'getUpdate'])->name('songs.update');
+Route::post('/songs/update/{id}', [SongsController::class, 'postUpdate'])->name('songs.update');
+Route::get('/songs/delete/{id}', [SongsController::class, 'getDelete'])->name('songs.delete');
 
 // Quản lý Status
-Route::get('/status', [StatusController::class, 'getDanhSach'])->name('status');
-Route::get('/status/them', [StatusController::class, 'getThem'])->name('status.them');
-Route::post('/status/them', [StatusController::class, 'postThem'])->name('status.them');
-Route::get('/status/sua/{id}', [StatusController::class, 'getSua'])->name('status.sua');
-Route::post('/status/sua/{id}', [StatusController::class, 'postSua'])->name('status.sua');
-Route::get('/status/xoa/{id}', [StatusController::class, 'getXoa'])->name('status.xoa');
+Route::get('/status', [StatusController::class, 'getList'])->name('status');
+Route::get('/status/add', [StatusController::class, 'getAdd'])->name('status.add');
+Route::post('/status/add', [StatusController::class, 'postAdd'])->name('status.add');
+Route::get('/status/update/{id}', [StatusController::class, 'getUpdate'])->name('status.update');
+Route::post('/status/update/{id}', [StatusController::class, 'postUpdate'])->name('status.update');
+Route::get('/status/delete/{id}', [StatusController::class, 'getDelete'])->name('status.delete');
 
 // Quản lý Portflo
-Route::get('/portflolio', [PortflolioController::class, 'getDanhSach'])->name('portflolio');
-Route::get('/portflolio/them', [PortflolioController::class, 'getThem'])->name('portflolio.them');
-Route::post('/portflolio/them', [PortflolioController::class, 'postThem'])->name('portflolio.them');
-Route::get('/portflolio/sua/{id}', [PortflolioController::class, 'getSua'])->name('portflolio.sua');
-Route::post('/portflolio/sua/{id}', [PortflolioController::class, 'postSua'])->name('portflolio.sua');
-Route::get('/portflolio/xoa/{id}', [PortflolioController::class, 'getXoa'])->name('portflolio.xoa');
+Route::get('/portflolio', [PortflolioController::class, 'getList'])->name('portflolio');
+Route::get('/portflolio/add', [PortflolioController::class, 'getAdd'])->name('portflolio.add');
+Route::post('/portflolio/add', [PortflolioController::class, 'postAdd'])->name('portflolio.add');
+Route::get('/portflolio/update/{id}', [PortflolioController::class, 'getUpdate'])->name('portflolio.update');
+Route::post('/portflolio/update/{id}', [PortflolioController::class, 'postUpdate'])->name('portflolio.update');
+Route::get('/portflolio/delete/{id}', [PortflolioController::class, 'getDelete'])->name('portflolio.delete');
 
-/* Quản lý User
-Route::get('/nguoidung', [UserController::class, 'getDanhSach'])->name('nguoidung');
-Route::get('/nguoidung/them', [UserController::class, 'getThem'])->name('nguoidung.them');
-Route::post('/nguoidung/them', [UserController::class, 'postThem'])->name('nguoidung.them');
-Route::get('/nguoidung/sua/{id}', [UserController::class, 'getSua'])->name('nguoidung.sua');
-Route::post('/nguoidung/sua/{id}', [UserController::class, 'postSua'])->name('nguoidung.sua');
-Route::get('/nguoidung/xoa/{id}', [UserController::class, 'getXoa'])->name('nguoidung.xoa');*/
+//Quản lý UserH
+Route::get('/user', [UserController::class, 'getList'])->name('user');
+Route::get('/user/add', [UserController::class, 'getAdd'])->name('user.add');
+Route::post('/user/add', [UserController::class, 'postAdd'])->name('user.add');
+Route::get('/user/update/{id}', [UserController::class, 'getUpdate'])->name('user.update');
+Route::post('/user/update/{id}', [UserController::class, 'postUpdate'])->name('user.update');
+Route::get('/user/delete/{id}', [UserController::class, 'getDelete'])->name('user.delete');

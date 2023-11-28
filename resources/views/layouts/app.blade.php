@@ -35,7 +35,7 @@
                     <!-- Left side of Navbar -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('type_beat') }}"><i
+                            <a class="nav-link" href="{{ route('typebeat') }}"><i
                                     class="fa-light fa-fw fa-diagram-project"></i>Type Beat</a>
                         </li>
                         <li class="nav-item">
@@ -43,18 +43,18 @@
                                     class="fa-light fa-fw fa-copyright"></i>Musicians</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('song') }}"><i class="fa-light fa-fw fa-box"></i>Song</a>
+                            <a class="nav-link" href="{{ route('songs') }}"><i class="fa-light fa-fw fa-box"></i>Song</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('status') }}"><i
                                     class="fa-light fa-fw fa-list-check"></i>Status</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('portfolio') }}"><i
+                            <a class="nav-link" href="portflolio"><i
                                     class="fa-light fa-fw fa-file-invoice"></i>Portflolio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user') }}"><i class="fa-light fa-fw fa-users"></i>user</a>
+                            <a class="nav-link" href="{{ route('user') }}"><i class="fa-light fa-fw fa-users"></i>User</a>
                         </li>
                     </ul>
                     <!-- Right side of Navbar -->
@@ -63,13 +63,13 @@
                         @if (Route::has('login'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}"><i
-                                    class="fa-light fa-fw fa-sign-in-alt"></i> Đăng nhập</a>
+                                    class="fa-light fa-fw fa-sign-in-alt"></i> Log in</a>
                         </li>
                         @endif
                         @if (Route::has('register'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}"><i class="fa-light fa-user-plus"></i>
-                                Đăng ký</a>
+                                Sign up</a>
                         </li>
                         @endif
                         @else
@@ -81,7 +81,7 @@
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                    <i class="fa-light fa-fw fa-sign-out-alt"></i> Đăng xuất
+                                    <i class="fa-light fa-fw fa-sign-out-alt"></i> Log out
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="post" class="d-none">
                                     @csrf
