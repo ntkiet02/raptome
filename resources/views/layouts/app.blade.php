@@ -73,16 +73,16 @@
     </header> 
        
 
-    <main class="pt-10">
+    <main class="pt-3">
    
-        <section class="hero">
+        <!-- <section class="hero">
             <div class="hero__slider owl-carousel">
                <img src = "resources/img/Sakura.jpg" /> 
            
             </div>
             
-        </section>
-         @yield('content')
+        </section> -->
+        @yield('content')
     </main>
 
         <hr class="shadow-sm" />

@@ -62,4 +62,5 @@
         </div>
     </div>
 </div>
+<?php include_once "resources/views/Different/Scriptadd.php"?>
 @endsection
