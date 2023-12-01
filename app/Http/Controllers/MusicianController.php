@@ -24,6 +24,7 @@ class MusicianController extends Controller
     
     public function postAdd(Request $request)
     {
+       
         $orm = new Musician();
         $orm->stagename = $request->stagename;
         $orm->stagename_slug = Str::slug($request->stagename, '-');
